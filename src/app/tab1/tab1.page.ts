@@ -1,3 +1,4 @@
+import { ApiService } from './../api.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  listMarvel: any;
+
+  constructor(private apiService: ApiService) {
+    this.getMarvel();
+  }
+
+  getMarvel() {
+    this.apiService.getMarvel().subscribe(data => {
+      this.listMarvel = data['data'].results;
+    });
+  }
 
 }
